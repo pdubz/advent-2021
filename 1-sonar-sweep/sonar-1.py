@@ -6,7 +6,7 @@ def sweep(depths: list) -> str:
         previous_depth = depths[0]
         for depth in depths[1:]:
             if depth > previous_depth:
-                increases = increases + 1
+                increases += 1
             previous_depth = depth
 
     return increases

@@ -7,7 +7,7 @@ def slide_sweep(depths: list) -> str:
         for i in range(1, len(depths)):
             if i < len(depths) - 2:
                 if sum(depths[i:i+3]) > previous_depth:
-                    increases = increases + 1
+                    increases += 1
                 previous_depth = sum(depths[i:i+3])
 
     return increases
