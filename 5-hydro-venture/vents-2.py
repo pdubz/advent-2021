@@ -37,7 +37,7 @@ class Vent:
         return x_direction, y_direction
 
     def magnitude(self):
-        return abs(self.x1 - self.x2 + self.y1 - self.y2) + 1
+        return max(abs(self.x1 - self.x2), abs(self.y1 - self.y2)) + 1
 
 
 class VentMap:
@@ -86,8 +86,7 @@ class VentMap:
 
 def check_vents(vents: list):
     vents = [Vent(vent) for vent in vents]
-    non_diagonals = [vent for vent in vents if not vent.is_diagonal()]
-    map = VentMap(non_diagonals)
+    map = VentMap(vents)
 
     return map.get_overlaps()
 
