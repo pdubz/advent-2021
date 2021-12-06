@@ -1,5 +1,7 @@
 #! /bin/python3
 
+# import numpy # uncomment for timing purposes vs O(log(n)) implementation
+
 
 def turn_me_lan(inputs: list):
     fishies = [int(item) for item in inputs]
