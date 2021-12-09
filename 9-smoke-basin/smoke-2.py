@@ -1,6 +1,7 @@
 #! /bin/python3
 
-import math
+def prod(list):
+    return list[0] * list[1] * list[2]
 
 
 def where_my_basins_at(start_x, start_y, tubes, traversed_locations):
@@ -60,7 +61,7 @@ def smoke_detector(inputs: list):
 
     size.sort()
 
-    return math.prod(size[-3:])
+    return prod(size[-3:])
 
 
 if __name__ == '__main__':

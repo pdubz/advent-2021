@@ -20,7 +20,7 @@ def smoke_detector(inputs: list):
             if x > 0:
                 if tubes[y][x - 1] <= tubes[y][x]:
                     lowpoint = False
-                    
+
             if x < len(tubes[y]) - 1:
                 if tubes[y][x + 1] <= tubes[y][x]:
                     lowpoint = False
