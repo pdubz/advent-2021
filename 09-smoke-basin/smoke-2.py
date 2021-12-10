@@ -1,5 +1,8 @@
 #! /bin/python3
 
+from timeit import default_timer as timer
+from datetime import timedelta
+
 def prod(list):
     return list[0] * list[1] * list[2]
 
@@ -68,4 +71,10 @@ if __name__ == '__main__':
     with open('input.txt') as file:
         values = [line.strip() for line in file]
 
+    start_time = timer()
+
     print(smoke_detector(values))
+
+    end_time = timer()
+
+    print(f'time: {timedelta(seconds=end_time - start_time)}')
