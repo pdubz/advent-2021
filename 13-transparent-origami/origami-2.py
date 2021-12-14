@@ -8,11 +8,20 @@ def print_origami(paper):
 
 
 def ori_my_gami(coordinates: list, folds: list):
-    for i, (x, y) in enumerate(coordinates):
-        if folds[0][0] == 'x' and folds[0][1] > x:
-            coordinates[i] = (2 * folds[0][1] - x, y)
-        if folds[0][0] == 'y' and folds[0][1] > y:
-            coordinates[i] = (x, 2 * folds[0][1] - y)
+    for axis, location in folds:
+        for i, (x, y) in enumerate(coordinates):
+            if axis == 'x' and x > location:
+                coordinates[i] = (2 * location - x, y)
+            if axis == 'y' and y > location:
+                coordinates[i] = (x, 2 * location - y)
+
+    width = max(x[0] for x in set(coordinates)) + 1
+    height = max([y[1] for y in set(coordinates)]) + 1
+
+    paper = [['.'] * width for y in range(height)]
+    for x, y in set(coordinates):
+        paper[y][x] = '#'
+    print_origami(paper)
 
     return len(set(coordinates))
 
