@@ -35,10 +35,38 @@ def pathfind(input: list):
     return 'yikes'
 
 
+def embiggen(grid):
+    embiggener = {
+        1: 2,
+        2: 3,
+        3: 4,
+        4: 5,
+        5: 6,
+        6: 7,
+        7: 8,
+        8: 9,
+        9: 1
+    }
+    embiggened_grid = [row.copy() for row in grid]
+    for iteration in range(4):
+        for y in range(len(grid)):
+            for x in range(len(grid[0])):
+                embiggened_grid[y].append(embiggener[embiggened_grid[y][x + len(grid) * iteration]])
+
+    for iteration in range(4):
+        for y in range(len(grid)):
+            row = []
+            for x in range(len(embiggened_grid[0])):
+                row.append(embiggener[embiggened_grid[y + len(grid) * iteration][x]])
+            embiggened_grid.append(row)
+
+    return embiggened_grid
+
+
 if __name__ == '__main__':
     with open('input.txt') as file:
         values = []
         for line in file:
             values.append([int(char) for char in line.strip()])
 
-    print(pathfind(values))
+    print(pathfind(embiggen(values)))
