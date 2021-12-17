@@ -34,11 +34,11 @@ def get_max_y(simulations):
 
 def probe_it(target: tuple):
     sims = []
-    for x_vel in range(target[1] * 2):
-        for y_vel in range(-target[2] * 2, target[2] * 2, -1):
+    for x_vel in range(target[1]):
+        for y_vel in range(-target[2], target[2], -1):
             sims.append(simulate(x_vel, y_vel, target))
 
-    return len([position[1] for position in sims if position[0]])
+    return get_max_y([position[1] for position in sims if position[0]])
 
 
 if __name__ == '__main__':
