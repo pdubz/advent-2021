@@ -38,6 +38,13 @@ class BinaryBuffer:
         self.location += bits
         return int(read_bits, 2)
 
+    def read_str(self, bits):
+        if self.location >= len(self.buffer):
+            return 'nope'
+        read_bits = self.buffer[self.location:self.location + bits]
+        self.location += bits
+        return read_bits
+
     def peek(self):
         return self.buffer[self.location:]
 
@@ -54,12 +61,11 @@ class BitsDecoder:
         self.version_sum += version
 
         if type == 4:
-            value = 0
-            keep_reading = True
-            while keep_reading:
-                keep_reading = bool(self.buffer.read(1))
-                value += self.buffer.read(4)
-            return value
+            literal_value = ''
+            while self.buffer.read(1):
+                literal_value += self.buffer.read_str(4)
+            literal_value += self.buffer.read_str(4)
+            return int(literal_value, 2)
         else:
             subpackets = []
             operator_length_type = self.buffer.read(1)
